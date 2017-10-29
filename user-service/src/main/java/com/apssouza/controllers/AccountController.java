@@ -18,7 +18,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.apssouza.services.AccountService;
+import java.util.Enumeration;
+import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpRequest;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Account's entry points
@@ -39,6 +48,30 @@ public class AccountController {
         this.userService = userService;
     }
 
+    
+    @RequestMapping(value="/oauth/test", method = {RequestMethod.OPTIONS, RequestMethod.POST, RequestMethod.GET})
+    public @ResponseBody String auth(HttpServletRequest request) {
+        Enumeration<String> headerNames = request.getParameterNames();
+        while(headerNames.hasMoreElements()) {
+            String hName = headerNames.nextElement();
+            System.out.println("name=" + hName);
+            System.out.println("value=" + request.getParameterValues(hName)[0]);
+        }
+        System.out.println("params");
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        for (Map.Entry<String, String[]> entry : parameterMap.entrySet()) {
+            System.out.println("name "+ entry.getKey());
+            System.out.println("value "+ entry.getValue()[0]);
+        }
+        
+//        HttpHeaders headers = request.getHeaders();
+//        List<MediaType> accept = headers.getAccept();
+//        String accessControlAllowOrigin = headers.getAccessControlAllowOrigin();
+//        MediaType contentType = headers.getContentType();
+
+return "test";
+    }
+    
     @GetMapping
     public List<Account> all() {
         return userService.all();

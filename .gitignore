@@ -52,3 +52,4 @@ atlassian-ide-plugin.xml
 target
 *rebel*
 *mvn*
+node_modules

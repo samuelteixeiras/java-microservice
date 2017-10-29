@@ -16,13 +16,14 @@ export class AuthenticationService {
     login(username: string, password: string): Observable<boolean> {
         let credentials = 'password=1234&username=apssouza22@gmail.com&grant_type=password&scope=write&client_secret=123456&client_id=todo-app';
         let headers = new Headers({
+            'Content-Type' : 'application/x-www-form-urlencoded'
             'Accept': 'application/json',
             'Access-Control-Allow-Origin': '*'
         });
-
+ 
         let options = new RequestOptions({headers: headers});
         return this.http.post(
-            'http://todo-app:123456@localhost:8017/oauth/token',
+            'http://todo-app:123456@localhost:8016/accounts/oauth/test',
             credentials,
             options
         )

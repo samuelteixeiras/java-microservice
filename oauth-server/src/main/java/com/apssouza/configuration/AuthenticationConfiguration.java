@@ -27,7 +27,11 @@ class AuthenticationConfiguration extends GlobalAuthenticationConfigurerAdapter 
     @Bean
     protected UserDetailsService userDetailsService() {
         return (email) -> {
-            com.apssouza.pojos.User user = userService.getUserByEmail(email);
+            //com.apssouza.pojos.User user = userService.getUserByEmail(email);
+            com.apssouza.pojos.User user = new com.apssouza.pojos.User(); 
+            System.out.println("email"+ email);
+            user.setEmail(email);
+            user.setPassword("1234");
             return new User(
                     user.getEmail(),
                     user.getPassword(),

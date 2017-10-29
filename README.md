@@ -123,7 +123,5 @@ docker logs container-name
 ```
 
 ## TODO
-* Integrate mail service to reminder-service
 * Integrate turbine in the Admin dashboard
-* Added a readme for each microservices and modules
-* Test the integration between the Filebeat and ELK
+* Deploy the project to Amazon ECS
